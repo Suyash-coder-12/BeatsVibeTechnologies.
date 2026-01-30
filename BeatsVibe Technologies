@@ -249,7 +249,7 @@
 
                 <div class="glass rounded-2xl overflow-hidden group hover:-translate-y-2 transition duration-300" data-aos="fade-up" data-aos-delay="300">
                     <div class="h-48 overflow-hidden relative">
-                        <img src="C:\Users\suraj\Downloads\Gemini_Generated_Image_a4fmr8a4fmr8a4fm.png" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                        <img src="dwcs.png" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
                         <div class="absolute inset-0 bg-gradient-to-t from-dark to-transparent opacity-80"></div>
                     </div>
                     <div class="p-6 relative -mt-6">
