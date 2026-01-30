@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BeatsVibe Technologies | Enterprise Learning</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#06b6d4', // Cyan
+                        secondary: '#8b5cf6', // Violet
+                        dark: '#020617', // Slate 950
+                        panel: 'rgba(30, 41, 59, 0.7)'
+                    },
+                    fontFamily: {
+                        sans: ['Outfit', 'sans-serif'],
+                        tech: ['Rajdhani', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* --- Global Styles --- */
+        body {
+            background-color: #020617;
+            color: #e2e8f0;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(6, 182, 212, 0.15) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(139, 92, 246, 0.15) 0px, transparent 50%);
+            background-attachment: fixed;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: #0f172a; }
+        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 5px; }
+        ::-webkit-scrollbar-thumb:hover { background: #06b6d4; }
+
+        /* Glassmorphism Class */
+        .glass {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        /* Animated Gradient Text */
+        .text-gradient {
+            background: linear-gradient(to right, #22d3ee, #c084fc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-size: 200% auto;
+            animation: textShine 5s linear infinite;
+        }
+
+        @keyframes textShine {
+            to { background-position: 200% center; }
+        }
+
+        /* Mobile Menu Transition */
+        #mobile-menu {
+            transition: all 0.3s ease-in-out;
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+        }
+        #mobile-menu.open {
+            max-height: 500px;
+            opacity: 1;
+        }
+
+        /* Particle Background */
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            top: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-cyan-500 selection:text-white">
+
+    <div id="particles-js"></div>
+
+    <nav class="fixed w-full z-50 transition-all duration-300" id="navbar">
+        <div class="glass border-b border-white/5 shadow-lg">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-between items-center h-20">
+                    
+                    <div class="flex items-center gap-3 cursor-pointer" onclick="scrollToSection('home')">
+                        <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center text-white font-bold text-xl shadow-[0_0_20px_rgba(6,182,212,0.5)]">B</div>
+                        <div class="leading-none hidden sm:block">
+                            <h1 class="text-xl font-bold font-tech tracking-wider text-white">BEATSVIBE</h1>
+                            <p class="text-[10px] text-cyan-400 tracking-[0.3em] uppercase">Technologies</p>
+                        </div>
+                    </div>
+
+                    <div class="hidden md:flex items-center gap-8">
+                        <button onclick="scrollToSection('home')" class="text-sm font-medium text-gray-300 hover:text-cyan-400 transition">Home</button>
+                        <button onclick="scrollToSection('courses')" class="text-sm font-medium text-gray-300 hover:text-cyan-400 transition">Courses</button>
+                        <button onclick="scrollToSection('founder')" class="text-sm font-medium text-gray-300 hover:text-cyan-400 transition">Founder</button>
+                        <button onclick="scrollToSection('contact')" class="text-sm font-medium text-gray-300 hover:text-cyan-400 transition">Contact</button>
+                    </div>
+
+                    <div class="hidden md:block">
+                        <button onclick="openLogin()" class="px-6 py-2 rounded-full bg-cyan-500/10 border border-cyan-500/50 text-cyan-400 hover:bg-cyan-500 hover:text-white transition font-bold text-sm">
+                            Student Login
+                        </button>
+                    </div>
+
+                    <div class="md:hidden flex items-center">
+                        <button onclick="toggleMobileMenu()" class="text-white text-2xl focus:outline-none">
+                            <i class="fas fa-bars"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="mobile-menu" class="md:hidden bg-dark border-t border-white/10">
+                <div class="px-4 pt-2 pb-6 space-y-2">
+                    <a onclick="mobileNav('home')" class="block px-3 py-3 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-white/10">Home</a>
+                    <a onclick="mobileNav('courses')" class="block px-3 py-3 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-white/10">Courses</a>
+                    <a onclick="mobileNav('founder')" class="block px-3 py-3 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-white/10">Founder</a>
+                    <a onclick="mobileNav('contact')" class="block px-3 py-3 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-white/10">Contact</a>
+                    <button onclick="mobileNav('login')" class="w-full mt-4 bg-gradient-to-r from-cyan-600 to-blue-600 text-white py-3 rounded-lg font-bold">Login Portal</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <section id="home" class="min-h-screen flex items-center pt-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-cyan-500/20 rounded-full blur-[128px] -z-10"></div>
+
+        <div class="max-w-7xl mx-auto w-full grid lg:grid-cols-2 gap-12 items-center">
+            
+            <div data-aos="fade-right" data-aos-duration="1000" class="text-center lg:text-left">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-cyan-500/30 bg-cyan-900/20 text-cyan-400 text-xs font-bold tracking-widest uppercase mb-6">
+                    <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
+                    MSME & NSDC Certified
+                </div>
+                
+                <h1 class="text-5xl sm:text-6xl lg:text-7xl font-bold font-tech leading-tight mb-6">
+                    Master The <br> <span class="text-gradient">Digital Future</span>
+                </h1>
+                
+                <p class="text-lg text-gray-400 mb-8 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+                    BeatsVibe Technologies empowers you with industry-leading skills in Data Analytics, AI, and Cybersecurity. Join 12,000+ learners transforming their careers today.
+                </p>
+
+                <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                    <button onclick="scrollToSection('courses')" class="px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-lg text-white font-bold shadow-lg shadow-cyan-500/25 hover:scale-105 transition">
+                        Explore Courses
+                    </button>
+                    <button onclick="scrollToSection('contact')" class="px-8 py-4 border border-gray-600 rounded-lg text-white font-bold hover:bg-white/5 transition">
+                        Talk to Expert
+                    </button>
+                </div>
+
+                <div class="mt-10 pt-8 border-t border-white/10 flex flex-wrap justify-center lg:justify-start gap-8 opacity-70">
+                    <div class="flex items-center gap-2"><i class="fas fa-certificate text-yellow-500"></i> <span class="text-sm font-semibold">ISO 9001</span></div>
+                    <div class="flex items-center gap-2"><i class="fas fa-building text-blue-500"></i> <span class="text-sm font-semibold">MSME Reg.</span></div>
+                    <div class="flex items-center gap-2"><i class="fas fa-award text-green-500"></i> <span class="text-sm font-semibold">NSDC Partner</span></div>
+                </div>
+            </div>
+
+            <div data-aos="zoom-in" data-aos-duration="1200" class="relative hidden md:block">
+                <div class="relative z-10 rounded-2xl overflow-hidden border border-white/10 shadow-2xl glass p-2 transform rotate-2 hover:rotate-0 transition duration-500">
+                    <img src="https://images.unsplash.com/photo-1573164713714-d95e436ab8d6?auto=format&fit=crop&q=80" alt="Students Learning" class="rounded-xl w-full">
+                </div>
+                <div class="absolute -bottom-10 -left-10 glass p-6 rounded-xl animate-bounce duration-[3000ms] z-20 max-w-xs">
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-green-500/20 rounded-full flex items-center justify-center text-green-400 text-xl"><i class="fas fa-check"></i></div>
+                        <div>
+                            <p class="font-bold text-white">Job Ready</p>
+                            <p class="text-xs text-gray-400">Curriculum designed by experts</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="courses" class="py-24 px-4 sm:px-6 lg:px-8 relative">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-3xl md:text-5xl font-bold font-tech mb-4">Premium <span class="text-cyan-400">Academy</span></h2>
+                <p class="text-gray-400">Top-rated courses at unbeatable prices.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <div class="glass rounded-2xl overflow-hidden group hover:-translate-y-2 transition duration-300 relative" data-aos="fade-up" data-aos-delay="100">
+                    <div class="absolute top-0 right-0 bg-red-600 text-white text-xs font-bold px-3 py-1 z-10">FLASH SALE</div>
+                    <div class="h-48 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-dark to-transparent opacity-80"></div>
+                    </div>
+                    <div class="p-6 relative -mt-6">
+                        <h3 class="text-xl font-bold text-white mb-2">Data Analytics Pro</h3>
+                        <p class="text-sm text-gray-400 mb-4 line-clamp-2">Complete mastery of Python, SQL, PowerBI, and Tableau.</p>
+                        
+                        <div class="flex items-center justify-between border-t border-white/10 pt-4">
+                            <div>
+                                <span class="text-xs text-gray-500 line-through">₹5,000</span>
+                                <div class="flex items-center gap-2">
+                                    <span class="text-2xl font-bold text-cyan-400">₹249</span>
+                                    <span class="text-[10px] bg-green-500/20 text-green-400 px-1 rounded">-95%</span>
+                                </div>
+                            </div>
+                            <button onclick="openPayment()" class="bg-white text-black hover:bg-cyan-400 px-4 py-2 rounded-lg font-bold text-sm transition">Enroll</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass rounded-2xl overflow-hidden group hover:-translate-y-2 transition duration-300" data-aos="fade-up" data-aos-delay="200">
+                    <div class="h-48 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1587620962725-abab7fe55159?auto=format&fit=crop&q=80" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-dark to-transparent opacity-80"></div>
+                    </div>
+                    <div class="p-6 relative -mt-6">
+                        <h3 class="text-xl font-bold text-white mb-2">Full Stack Web Dev</h3>
+                        <p class="text-sm text-gray-400 mb-4 line-clamp-2">MERN Stack (MongoDB, Express, React, Node) Bootcamp.</p>
+                        
+                        <div class="flex items-center justify-between border-t border-white/10 pt-4">
+                            <div>
+                                <span class="text-xs text-gray-500 line-through">₹8,000</span>
+                                <span class="text-2xl font-bold text-cyan-400">₹499</span>
+                            </div>
+                            <button onclick="openPayment()" class="bg-white/10 hover:bg-white text-white hover:text-black px-4 py-2 rounded-lg font-bold text-sm transition">Enroll</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass rounded-2xl overflow-hidden group hover:-translate-y-2 transition duration-300" data-aos="fade-up" data-aos-delay="300">
+                    <div class="h-48 overflow-hidden relative">
+                        <img src="C:\Users\suraj\Downloads\Gemini_Generated_Image_a4fmr8a4fmr8a4fm.png" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-dark to-transparent opacity-80"></div>
+                    </div>
+                    <div class="p-6 relative -mt-6">
+                        <h3 class="text-xl font-bold text-white mb-2">Data Analytics with Cybersecurity</h3>
+                        <p class="text-sm text-gray-400 mb-4 line-clamp-2">Network defense, penetration testing, and security protocols.</p>
+                        
+                        <div class="flex items-center justify-between border-t border-white/10 pt-4">
+                            <div>
+                                <span class="text-xs text-gray-500 line-through">₹6,000</span>
+                                <span class="text-2xl font-bold text-cyan-400">₹399</span>
+                            </div>
+                            <button onclick="openPayment()" class="bg-white/10 hover:bg-white text-white hover:text-black px-4 py-2 rounded-lg font-bold text-sm transition">Enroll</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="founder" class="py-24 px-4 bg-white/5 relative">
+        <div class="max-w-6xl mx-auto">
+            <div class="glass p-8 md:p-12 rounded-3xl grid md:grid-cols-2 gap-12 items-center">
+                
+                <div class="order-1 md:order-1 relative" data-aos="fade-right">
+                    <div class="absolute inset-0 bg-gradient-to-tr from-cyan-500 to-purple-600 rounded-2xl blur-lg opacity-50"></div>
+                    <img src="C:\Users\suraj\Downloads\founderr.jpeg" alt="Suyash Rathod" class="relative rounded-2xl w-full shadow-2xl grayscale hover:grayscale-0 transition duration-500">
+                </div>
+
+                <div class="order-2 md:order-2 space-y-6" data-aos="fade-left">
+                    <h2 class="text-4xl font-bold font-tech">Meet The <span class="text-cyan-400">Visionary</span></h2>
+                    <h3 class="text-2xl font-bold text-white">Suyash Rathod</h3>
+                    <p class="text-cyan-400 text-sm font-bold uppercase tracking-widest">Founder & Executive Director</p>
+                    
+                    <p class="text-gray-300 leading-relaxed">
+                        "At BeatsVibe Technologies, we don't just teach technology; we create the architects of the future. Our mission is to make premium technical education accessible to every student in India, regardless of their background."
+                    </p>
+                    
+                    <div class="flex gap-4 pt-4">
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-blue-600 hover:text-white transition"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-blue-400 hover:text-white transition"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-pink-600 hover:text-white transition"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="py-24 px-4">
+        <div class="max-w-5xl mx-auto text-center mb-12" data-aos="zoom-in">
+            <h2 class="text-4xl font-bold font-tech mb-4">Get In <span class="text-cyan-400">Touch</span></h2>
+            <p class="text-gray-400">We are here to help you 24/7.</p>
+        </div>
+
+        <div class="max-w-5xl mx-auto grid md:grid-cols-3 gap-6">
+            <a href="https://wa.me/919518556058" class="glass p-8 rounded-2xl flex flex-col items-center gap-4 hover:bg-green-900/20 transition group" data-aos="fade-up" data-aos-delay="0">
+                <div class="w-16 h-16 rounded-full bg-green-500/20 text-green-500 flex items-center justify-center text-3xl group-hover:scale-110 transition">
+                    <i class="fab fa-whatsapp"></i>
+                </div>
+                <div class="text-center">
+                    <h3 class="font-bold text-white">WhatsApp</h3>
+                    <p class="text-gray-400 text-sm mt-1">+91 9518556058</p>
+                </div>
+            </a>
+
+            <a href="tel:+919022016196" class="glass p-8 rounded-2xl flex flex-col items-center gap-4 hover:bg-blue-900/20 transition group" data-aos="fade-up" data-aos-delay="100">
+                <div class="w-16 h-16 rounded-full bg-blue-500/20 text-blue-500 flex items-center justify-center text-3xl group-hover:scale-110 transition">
+                    <i class="fas fa-phone-alt"></i>
+                </div>
+                <div class="text-center">
+                    <h3 class="font-bold text-white">Phone Call</h3>
+                    <p class="text-gray-400 text-sm mt-1">+91 9022016196</p>
+                </div>
+            </a>
+
+            <a href="mailto:admin@beatsvibetechnologies.info" class="glass p-8 rounded-2xl flex flex-col items-center gap-4 hover:bg-purple-900/20 transition group" data-aos="fade-up" data-aos-delay="200">
+                <div class="w-16 h-16 rounded-full bg-purple-500/20 text-purple-500 flex items-center justify-center text-3xl group-hover:scale-110 transition">
+                    <i class="fas fa-envelope"></i>
+                </div>
+                <div class="text-center">
+                    <h3 class="font-bold text-white">Email</h3>
+                    <p class="text-gray-400 text-sm mt-1 break-all">admin@beatsvibetechnologies.info</p>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <footer class="bg-black border-t border-white/10 pt-16 pb-8">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <h2 class="text-2xl font-bold text-white mb-2">BEATSVIBE TECHNOLOGIES</h2>
+            <p class="text-gray-500 text-sm mb-6">Empowering India's Youth with Future-Ready Skills.</p>
+            <p class="text-gray-600 text-xs">
+                &copy; 2026 BeatsVibe Technologies Pvt Ltd. All Rights Reserved.<br>
+                MSME Registered | ISO 9001 Certified
+            </p>
+        </div>
+    </footer>
+
+    <div id="loginModal" class="fixed inset-0 z-[100] hidden items-center justify-center bg-black/90 backdrop-blur-sm p-4">
+        <div class="glass w-full max-w-md p-8 rounded-2xl relative" data-aos="zoom-in">
+            <button onclick="closeLogin()" class="absolute top-4 right-4 text-gray-500 hover:text-white text-xl">&times;</button>
+            <h2 class="text-2xl font-bold text-center mb-6">Student Login</h2>
+            <form onsubmit="handleLogin(event)" class="space-y-4">
+                <div>
+                    <label class="text-sm text-gray-400 block mb-2">Email</label>
+                    <input type="email" class="w-full bg-dark border border-white/10 rounded-lg p-3 text-white focus:border-cyan-500 outline-none">
+                </div>
+                <div>
+                    <label class="text-sm text-gray-400 block mb-2">Password</label>
+                    <input type="password" class="w-full bg-dark border border-white/10 rounded-lg p-3 text-white focus:border-cyan-500 outline-none">
+                </div>
+                <button type="submit" id="loginBtn" class="w-full bg-gradient-to-r from-cyan-600 to-blue-600 py-3 rounded-lg text-white font-bold hover:scale-105 transition">
+                    Access Portal
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <a href="https://wa.me/919518556058" class="fixed bottom-6 right-6 bg-green-500 p-4 rounded-full text-white shadow-lg hover:scale-110 transition z-40">
+        <i class="fab fa-whatsapp text-2xl"></i>
+    </a>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    
+    <script>
+        // Initialize AOS Animation Library
+        AOS.init({
+            once: true,
+            offset: 100,
+            duration: 800,
+        });
+
+        // Initialize Particles
+        particlesJS("particles-js", {
+            "particles": {
+                "number": { "value": 50 },
+                "color": { "value": "#06b6d4" },
+                "shape": { "type": "circle" },
+                "opacity": { "value": 0.2 },
+                "size": { "value": 3 },
+                "line_linked": {
+                    "enable": true,
+                    "distance": 150,
+                    "color": "#06b6d4",
+                    "opacity": 0.1,
+                    "width": 1
+                },
+                "move": { "speed": 2 }
+            }
+        });
+
+        // Navigation Logic
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('open');
+        }
+
+        function scrollToSection(id) {
+            const element = document.getElementById(id);
+            if(element) {
+                // Close menu if open
+                document.getElementById('mobile-menu').classList.remove('open');
+                // Scroll
+                const headerOffset = 80;
+                const elementPosition = element.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                window.scrollTo({ top: offsetPosition, behavior: "smooth" });
+            }
+        }
+
+        function mobileNav(id) {
+            if(id === 'login') {
+                toggleMobileMenu();
+                openLogin();
+            } else {
+                scrollToSection(id);
+            }
+        }
+
+        // Login Logic
+        function openLogin() {
+            document.getElementById('loginModal').style.display = 'flex';
+        }
+        function closeLogin() {
+            document.getElementById('loginModal').style.display = 'none';
+        }
+        function handleLogin(e) {
+            e.preventDefault();
+            const btn = document.getElementById('loginBtn');
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Verifying...';
+            setTimeout(() => {
+                alert("Login Successful! Redirecting to Dashboard...");
+                closeLogin();
+                btn.innerHTML = 'Access Portal';
+            }, 1500);
+        }
+
+        function openPayment() {
+            alert("Redirecting to Secure Payment Gateway (UPI/Card)...");
+        }
+
+        // Navbar Blur Effect on Scroll
+        window.addEventListener('scroll', function() {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                nav.classList.add('bg-dark/80');
+            } else {
+                nav.classList.remove('bg-dark/80');
+            }
+        });
+    </script>
+</body>
+</html>
