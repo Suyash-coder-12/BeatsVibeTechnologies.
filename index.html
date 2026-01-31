@@ -33,25 +33,24 @@
     </script>
 
     <style>
-        /* --- Essential Styles --- */
+        /* --- Global Styles --- */
         body {
             background-color: #020617;
             color: #e2e8f0;
             overflow-x: hidden;
-            /* Fallback background if particles fail */
             background-image: 
                 radial-gradient(at 0% 0%, rgba(6, 182, 212, 0.15) 0px, transparent 50%),
                 radial-gradient(at 100% 100%, rgba(139, 92, 246, 0.15) 0px, transparent 50%);
             background-attachment: fixed;
         }
 
-        /* Scrollbar */
+        /* Custom Scrollbar */
         ::-webkit-scrollbar { width: 10px; }
         ::-webkit-scrollbar-track { background: #0f172a; }
         ::-webkit-scrollbar-thumb { background: #334155; border-radius: 5px; }
         ::-webkit-scrollbar-thumb:hover { background: #06b6d4; }
 
-        /* Glass Effect */
+        /* Glassmorphism Class */
         .glass {
             background: rgba(255, 255, 255, 0.03);
             backdrop-filter: blur(16px);
@@ -59,7 +58,7 @@
             border: 1px solid rgba(255, 255, 255, 0.05);
         }
 
-        /* Gradient Text Animation */
+        /* Animated Gradient Text */
         .text-gradient {
             background: linear-gradient(to right, #22d3ee, #c084fc);
             -webkit-background-clip: text;
@@ -68,9 +67,11 @@
             animation: textShine 5s linear infinite;
         }
 
-        @keyframes textShine { to { background-position: 200% center; } }
+        @keyframes textShine {
+            to { background-position: 200% center; }
+        }
 
-        /* Mobile Menu */
+        /* Mobile Menu Transition */
         #mobile-menu {
             transition: all 0.3s ease-in-out;
             max-height: 0;
@@ -82,7 +83,7 @@
             opacity: 1;
         }
 
-        /* Particles Container */
+        /* Particle Background */
         #particles-js {
             position: fixed;
             width: 100%;
@@ -90,7 +91,6 @@
             z-index: -1;
             top: 0;
             left: 0;
-            pointer-events: none; /* Prevents clicking issues */
         }
     </style>
 </head>
@@ -214,6 +214,7 @@
                     <div class="p-6 relative -mt-6">
                         <h3 class="text-xl font-bold text-white mb-2">Data Analytics Pro</h3>
                         <p class="text-sm text-gray-400 mb-4 line-clamp-2">Complete mastery of Python, SQL, PowerBI, and Tableau.</p>
+                        
                         <div class="flex items-center justify-between border-t border-white/10 pt-4">
                             <div>
                                 <span class="text-xs text-gray-500 line-through">₹5,000</span>
@@ -235,6 +236,7 @@
                     <div class="p-6 relative -mt-6">
                         <h3 class="text-xl font-bold text-white mb-2">Full Stack Web Dev</h3>
                         <p class="text-sm text-gray-400 mb-4 line-clamp-2">MERN Stack (MongoDB, Express, React, Node) Bootcamp.</p>
+                        
                         <div class="flex items-center justify-between border-t border-white/10 pt-4">
                             <div>
                                 <span class="text-xs text-gray-500 line-through">₹8,000</span>
@@ -247,12 +249,13 @@
 
                 <div class="glass rounded-2xl overflow-hidden group hover:-translate-y-2 transition duration-300" data-aos="fade-up" data-aos-delay="300">
                     <div class="h-48 overflow-hidden relative">
-                        <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                        <img src="C:\Users\suraj\Downloads\Gemini_Generated_Image_a4fmr8a4fmr8a4fm.png" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
                         <div class="absolute inset-0 bg-gradient-to-t from-dark to-transparent opacity-80"></div>
                     </div>
                     <div class="p-6 relative -mt-6">
                         <h3 class="text-xl font-bold text-white mb-2">Data Analytics with Cybersecurity</h3>
                         <p class="text-sm text-gray-400 mb-4 line-clamp-2">Network defense, penetration testing, and security protocols.</p>
+                        
                         <div class="flex items-center justify-between border-t border-white/10 pt-4">
                             <div>
                                 <span class="text-xs text-gray-500 line-through">₹6,000</span>
@@ -273,13 +276,14 @@
                 
                 <div class="order-1 md:order-1 relative" data-aos="fade-right">
                     <div class="absolute inset-0 bg-gradient-to-tr from-cyan-500 to-purple-600 rounded-2xl blur-lg opacity-50"></div>
-                    <img src="suyash.jpeg" alt="Suyash Rathod" class="relative rounded-2xl w-full shadow-2xl grayscale hover:grayscale-0 transition duration-500">
+                    <img src="C:\Users\suraj\Downloads\founderr.jpeg" alt="Suyash Rathod" class="relative rounded-2xl w-full shadow-2xl grayscale hover:grayscale-0 transition duration-500">
                 </div>
 
                 <div class="order-2 md:order-2 space-y-6" data-aos="fade-left">
                     <h2 class="text-4xl font-bold font-tech">Meet The <span class="text-cyan-400">Visionary</span></h2>
                     <h3 class="text-2xl font-bold text-white">Suyash Rathod</h3>
                     <p class="text-cyan-400 text-sm font-bold uppercase tracking-widest">Founder & Executive Director</p>
+                    
                     <p class="text-gray-300 leading-relaxed">
                         "At BeatsVibe Technologies, we don't just teach technology; we create the architects of the future. Our mission is to make premium technical education accessible to every student in India, regardless of their background."
                     </p>
@@ -369,7 +373,7 @@
     </a>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js" onerror="console.log('Particles.js failed to load, continuing without it.')"></script>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     
     <script>
         // Initialize AOS Animation Library
@@ -379,26 +383,24 @@
             duration: 800,
         });
 
-        // Initialize Particles (Safe Check)
-        if (typeof particlesJS !== 'undefined') {
-            particlesJS("particles-js", {
-                "particles": {
-                    "number": { "value": 50 },
-                    "color": { "value": "#06b6d4" },
-                    "shape": { "type": "circle" },
-                    "opacity": { "value": 0.2 },
-                    "size": { "value": 3 },
-                    "line_linked": {
-                        "enable": true,
-                        "distance": 150,
-                        "color": "#06b6d4",
-                        "opacity": 0.1,
-                        "width": 1
-                    },
-                    "move": { "speed": 2 }
-                }
-            });
-        }
+        // Initialize Particles
+        particlesJS("particles-js", {
+            "particles": {
+                "number": { "value": 50 },
+                "color": { "value": "#06b6d4" },
+                "shape": { "type": "circle" },
+                "opacity": { "value": 0.2 },
+                "size": { "value": 3 },
+                "line_linked": {
+                    "enable": true,
+                    "distance": 150,
+                    "color": "#06b6d4",
+                    "opacity": 0.1,
+                    "width": 1
+                },
+                "move": { "speed": 2 }
+            }
+        });
 
         // Navigation Logic
         function toggleMobileMenu() {
