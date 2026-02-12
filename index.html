@@ -220,10 +220,13 @@
                 <div class="glass-card rounded-2xl overflow-hidden group">
                     <div class="h-48 relative overflow-hidden">
                         <div class="absolute top-4 right-4 bg-red-600 text-white text-[10px] font-bold px-3 py-1 rounded z-10 animate-pulse">FLASH SALE</div>
-                        <img src="https://youtu.be/BC1bgvwB9HQ" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                        
+                        <img src="https://img.youtube.com/vi/BC1bgvwB9HQ/maxresdefault.jpg" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                        
                         <div class="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition"></div>
-                        <button onclick="openVideo(https://youtu.be/BC1bgvwB9HQ)" class="absolute inset-0 m-auto w-12 h-12 bg-white/20 backdrop-blur rounded-full flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transition hover:bg-cyan-500 hover:scale-110">
-                            <i class="https://youtu.be/BC1bgvwB9HQ"></i>
+                        
+                        <button onclick="openVideo('BC1bgvwB9HQ')" class="absolute inset-0 m-auto w-12 h-12 bg-white/20 backdrop-blur rounded-full flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transition hover:bg-cyan-500 hover:scale-110">
+                            <i class="fas fa-play ml-1"></i>
                         </button>
                     </div>
                     <div class="p-6">
@@ -310,7 +313,7 @@
                     </div>
                     <div class="flex gap-4 pt-4">
                         <a href="https://www.linkedin.com/in/suyashrathod/" class="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center hover:bg-blue-600 hover:text-white transition border border-white/10"><i class="fab fa-linkedin-in text-lg"></i></a>
-                        <a href="ttps://x.com/rathodsuyash52?t=IxCX6I1Y623ASFBTEPlknQ&s=09" class="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center hover:bg-blue-400 hover:text-white transition border border-white/10"><i class="fab fa-twitter text-lg"></i></a>
+                        <a href="https://x.com/rathodsuyash52?t=IxCX6I1Y623ASFBTEPlknQ&s=09" class="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center hover:bg-blue-400 hover:text-white transition border border-white/10"><i class="fab fa-twitter text-lg"></i></a>
                     </div>
                 </div>
             </div>
@@ -433,11 +436,13 @@
             document.getElementById('loginModal').classList.remove('hidden');
         }
 
-        function openVideo() {
+        // Fixed Video Function
+        function openVideo(videoId = 'Bey4XXJAqS8') {
             const modal = document.getElementById('videoModal');
             const iframe = document.getElementById('videoFrame');
-            // Tech demo video
-            iframe.src = "https://www.youtube.com/embed/Bey4XXJAqS8?autoplay=1&mute=1"; 
+            
+            // Dynamically insert the passed video ID into the YouTube embed URL
+            iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1`; 
             modal.classList.remove('hidden');
         }
 
